@@ -72,7 +72,7 @@ function watchFiles(done) {
   };
   watch(CONF.PUG.SOURCE).on('change', series(html, browserReload));
   watch(CONF.SASS.SOURCE).on('change', series(css, browserReload));
-  watch(CONF.JS.SOURCE).on('change', series(html, browserReload));
+  watch(CONF.JS.SOURCE).on('change', series(js, browserReload));
 }
 
 
