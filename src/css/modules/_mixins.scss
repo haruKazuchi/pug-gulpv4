@@ -1,0 +1,98 @@
+/*
+ * media query
+**/
+@mixin PC() {
+	@media screen and (min-width:$breakpoint + 1) {
+		@content;
+	}
+}
+@mixin CUSTOM($bp) {
+	@media screen and (max-width: $bp){
+		@content;
+	}
+}
+@mixin SP() {
+	@media screen and (max-width:$breakpoint) {
+		@content;
+	}
+}
+@mixin SPP() {
+	@media screen and (max-width: 374px) {
+		@content;
+	}
+}
+
+/**
+ * プレースホルダーカラー
+ */
+@mixin placeholderColor($color) {
+    &:placeholder-shown {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color:$color;
+    }
+    &:-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &::-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder {
+        color:$color;
+    }
+}
+
+//------------------------------------------------
+// ハンバーガーアイコン
+//
+// htmlの実装例）
+// 3本線 : <div class="icon"><hr><hr><hr></div>
+// 2本線 : <div class="icon"><hr><hr></div>
+//
+// @param $color 線の色
+// @param $thickness 線の太さ
+//------------------------------------------------
+@mixin hamburger($color, $thickness) {
+  @content;
+
+  .icon {
+    hr {
+      position: absolute;
+      margin: -($thickness / 2) 0 0 0;
+      display: block;
+      width: 100%;
+      height: $thickness;
+      background: $color;
+      border: none;
+      transition: top 0.2s 0.3s linear, opacity 0.0s 0.3s linear, transform 0.3s 0.0s linear;
+    }
+    hr:nth-child(1) {
+      top: 0;
+    }
+    hr:nth-child(2) {
+      top: 100%;
+    }
+    hr:nth-child(3) {
+      top: 50%;
+    }
+  }
+  &.open .icon {
+    hr {
+      transition: top 0.2s 0.0s linear, opacity 0.0s 0.2s linear, transform 0.3s 0.2s linear;
+    }
+    hr:nth-child(1) {
+      top: 50%;
+      transform: rotate(225deg);
+    }
+    hr:nth-child(2) {
+      top: 50%;
+      transform: rotate(135deg);
+    }
+    hr:nth-child(3) {
+      opacity: 0;
+    }
+  }
+}
