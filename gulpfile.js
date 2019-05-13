@@ -9,6 +9,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const CONF = {
   PUG : {
     SOURCE : 'src/pug/**/*.pug',
+    IGNORE : '!src/pug/includes/**/*.pug',
 		OUTPUT : './public',
   },
 	SASS : {
@@ -31,7 +32,7 @@ const CONF = {
 };
 
 function html() {
-  return src([CONF.PUG.SOURCE, '!/src/pug/includes/'])
+  return src([CONF.PUG.SOURCE, CONF.PUG.IGNORE])
     .pipe(pug())
     .pipe(dest(CONF.PUG.OUTPUT))
 }
